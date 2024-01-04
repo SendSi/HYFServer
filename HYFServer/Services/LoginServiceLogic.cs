@@ -6,7 +6,7 @@ namespace PyramidServer.Services
 {
     public class LoginServiceLogic : LoginService.LoginServiceBase
     {
-        const string connectionString = "Server=localhost;Database=pyramid;Uid=root;Pwd=123456;";
+        const string connectionString = "Server=localhost;Database=hyf;Uid=root;Pwd=123456;";
         public override Task<ResultRsp> Login(LoginReq request, ServerCallContext context)
         {
             var isExist = RoleSQLQuery(request.NickName);

@@ -15,7 +15,16 @@ namespace PyramidServer.Services
         {
             BagAllInfoResponse res=new BagAllInfoResponse();
             res.AllItemInfo.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
-            res.AllItemInfo.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2, Sum = 51, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 3, Sum = 61, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 5, Sum = 101, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 58, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 59, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2401, Sum =81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2402, Sum = 71, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 10001, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 40001, Sum = 51, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 30001, Sum = 11, Uid = "21" });
 
             return Task.FromResult(res);      
         }
@@ -42,7 +51,16 @@ namespace PyramidServer.Services
         {
             ItemDtos res = new ItemDtos();
             res.AllItemInfo.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
-            res.AllItemInfo.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2, Sum = 51, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 3, Sum = 61, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 5, Sum = 101, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 58, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 59, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2401, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 2402, Sum = 71, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 10001, Sum = 81, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 40001, Sum = 51, Uid = "21" });
+            res.AllItemInfo.Add(new ItemDto() { CfgId = 30001, Sum = 11, Uid = "21" });
 
             PushServiceLogic.PushToClient(context, new PushRsp()
             {
