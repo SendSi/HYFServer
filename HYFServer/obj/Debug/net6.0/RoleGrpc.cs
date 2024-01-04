@@ -49,6 +49,14 @@ namespace HYFServer {
     static readonly grpc::Marshaller<global::HYFServer.RoleInfoRequest> __Marshaller_role_RoleInfoRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleInfoRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::HYFServer.RoleInfoResponse> __Marshaller_role_RoleInfoResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleInfoResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.RoleUpLvRequest> __Marshaller_role_RoleUpLvRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleUpLvRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.RoleUpLvResponse> __Marshaller_role_RoleUpLvResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleUpLvResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.RoleAddVipRequest> __Marshaller_role_RoleAddVipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleAddVipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.RoleAddVipResponse> __Marshaller_role_RoleAddVipResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.RoleAddVipResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::HYFServer.RoleInfoRequest, global::HYFServer.RoleInfoResponse> __Method_RoleInfo = new grpc::Method<global::HYFServer.RoleInfoRequest, global::HYFServer.RoleInfoResponse>(
@@ -57,6 +65,22 @@ namespace HYFServer {
         "RoleInfo",
         __Marshaller_role_RoleInfoRequest,
         __Marshaller_role_RoleInfoResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::HYFServer.RoleUpLvRequest, global::HYFServer.RoleUpLvResponse> __Method_RoleUpLv = new grpc::Method<global::HYFServer.RoleUpLvRequest, global::HYFServer.RoleUpLvResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RoleUpLv",
+        __Marshaller_role_RoleUpLvRequest,
+        __Marshaller_role_RoleUpLvResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::HYFServer.RoleAddVipRequest, global::HYFServer.RoleAddVipResponse> __Method_RoleAddVip = new grpc::Method<global::HYFServer.RoleAddVipRequest, global::HYFServer.RoleAddVipResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RoleAddVip",
+        __Marshaller_role_RoleAddVipRequest,
+        __Marshaller_role_RoleAddVipResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -74,6 +98,18 @@ namespace HYFServer {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::HYFServer.RoleUpLvResponse> RoleUpLv(global::HYFServer.RoleUpLvRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::HYFServer.RoleAddVipResponse> RoleAddVip(global::HYFServer.RoleAddVipRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -82,7 +118,9 @@ namespace HYFServer {
     public static grpc::ServerServiceDefinition BindService(RoleServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_RoleInfo, serviceImpl.RoleInfo).Build();
+          .AddMethod(__Method_RoleInfo, serviceImpl.RoleInfo)
+          .AddMethod(__Method_RoleUpLv, serviceImpl.RoleUpLv)
+          .AddMethod(__Method_RoleAddVip, serviceImpl.RoleAddVip).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -93,6 +131,8 @@ namespace HYFServer {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, RoleServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_RoleInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.RoleInfoRequest, global::HYFServer.RoleInfoResponse>(serviceImpl.RoleInfo));
+      serviceBinder.AddMethod(__Method_RoleUpLv, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.RoleUpLvRequest, global::HYFServer.RoleUpLvResponse>(serviceImpl.RoleUpLv));
+      serviceBinder.AddMethod(__Method_RoleAddVip, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.RoleAddVipRequest, global::HYFServer.RoleAddVipResponse>(serviceImpl.RoleAddVip));
     }
 
   }

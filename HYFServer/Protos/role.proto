@@ -5,6 +5,8 @@ package role;
 
 service RoleService {
   rpc RoleInfo(RoleInfoRequest) returns (RoleInfoResponse);
+  rpc RoleUpLv(RoleUpLvRequest) returns (RoleUpLvResponse);
+  rpc RoleAddVip(RoleAddVipRequest) returns (RoleAddVipResponse);
 }
 
 //查看某一角色的 请求
@@ -13,6 +15,26 @@ message RoleInfoRequest {
 }
 //查看某一角色的 响应
 message RoleInfoResponse {
+  RoleInfo info = 9;
+}
+
+//某一角色的升级 请求
+message RoleUpLvRequest {
+  string uid = 1;
+  int32 lv = 2;
+}
+//某一角色的升级 响应
+message RoleUpLvResponse {
+  RoleInfo info = 9;
+}
+
+
+//某一角色的设置为vip 请求
+message RoleAddVipRequest {
+  string uid = 1;
+}
+//某一角色的设置为vip 响应
+message RoleAddVipResponse {
   RoleInfo info = 9;
 }
 

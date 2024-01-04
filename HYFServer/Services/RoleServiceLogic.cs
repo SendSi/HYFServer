@@ -33,6 +33,37 @@ namespace PyramidServer.Services
             });
         }
 
+        public override Task<RoleUpLvResponse> RoleUpLv(RoleUpLvRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new RoleUpLvResponse
+            {
+                Info = new RoleInfo()
+                {
+                    Age = 1,
+                    Uid = "fd",
+                    Gender = 1,
+                    Lv = 100,
+                    Nickname = "名字"
+                }
+            });
+        }
+
+        public override Task<RoleAddVipResponse> RoleAddVip(RoleAddVipRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new RoleAddVipResponse
+            {
+                Info = new RoleInfo()
+                {
+                    Age = 1,
+                    Uid = "fd",
+                    Gender = 1,
+                    Lv = 100,
+                    Nickname = "vip啦....."
+                }
+            });
+        }
+
+
         //暂不校验密码了
         bool DataSQL(string account)
         {
