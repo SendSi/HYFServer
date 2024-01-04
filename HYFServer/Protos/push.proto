@@ -1,0 +1,22 @@
+syntax = "proto3";
+package push;
+option csharp_namespace = "HYFServer";
+
+import "role.proto";
+import "bag.proto";
+
+service PushService {
+    rpc ServerPush (PushReq) returns (stream PushRsp);
+}
+
+message PushReq {
+}
+
+message PushRsp {
+    oneof PushMessage {
+        role.RoleLevelUpdate roleLevelUpdate = 2;
+
+        // 在前面添加更多需要Push的数据类型     
+        bag.ItemDtos itemDots=4;
+    }
+}

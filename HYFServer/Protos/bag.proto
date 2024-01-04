@@ -1,0 +1,48 @@
+syntax = "proto3";
+package bag;
+option csharp_namespace = "HYFServer";
+
+service BagService {
+  rpc BagAllInfo (BagAllInfoRequest) returns (BagAllInfoResponse);
+  rpc BagOneInfo (BagOneInfoRequest) returns (BagOneInfoResponse);
+  rpc BagUsingItem (BagUsingItemRequest) returns (BagUsingItemResponse);
+}
+//获取背包所有 请求
+message BagAllInfoRequest  {
+}
+//获取背包所有 响应
+message BagAllInfoResponse {
+ repeated  ItemDto allItemInfo = 1;
+}
+
+//获取背包某一 请求
+message BagOneInfoRequest  {
+    int32 cfgId=1;
+}
+//获取背包某一 响应
+message BagOneInfoResponse {
+   ItemDto itemDto=5;
+}
+
+//使用背包某一 请求
+message BagUsingItemRequest  {
+    int32 cfgId=1;
+    int32 num=2;
+}
+//使用背包某一 响应
+message BagUsingItemResponse  {
+    int32 cfgId=1;
+    int32 sum=2;
+}
+
+
+//item的 dto
+message ItemDto{
+    int32 cfgId=1;
+    int32  sum=2;
+    string uid=3;
+}
+//items的 dto
+message ItemDtos{
+     repeated  ItemDto allItemInfo = 1;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+package login;
+option csharp_namespace = "HYFServer";
+
+service LoginService {
+  rpc Login (LoginReq) returns (ResultRsp);
+  rpc Logout (LogoutReq) returns (LogoutRsp);
+}
+
+message LoginReq  {
+  string nickName= 10;
+}
+//结果响应
+message ResultRsp{
+    int32 state=1;//1成功
+}
+
+message LoginRsp {
+  string nickName = 10;
+  string password = 2;
+  int64 uid = 3;
+  bool gender = 4;
+}
+
+message LogoutReq {
+}
+
+message LogoutRsp {
+}

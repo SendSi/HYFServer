@@ -1,0 +1,30 @@
+syntax = "proto3";
+option csharp_namespace = "HYFServer";
+package role;
+
+
+service RoleService {
+  rpc RoleInfo(RoleInfoRequest) returns (RoleInfoResponse);
+}
+
+//查看某一角色的 请求
+message RoleInfoRequest {
+  string uid = 10;
+}
+//查看某一角色的 响应
+message RoleInfoResponse {
+  RoleInfo info = 9;
+}
+
+message RoleLevelUpdate{
+  int32 lv = 1;
+}
+
+//角色的dto
+message RoleInfo{
+    string uid=7;
+    string nickname=2;
+    int32 age=3;
+    int32 lv = 4;
+    int32 gender=5;//1男  2女
+}
