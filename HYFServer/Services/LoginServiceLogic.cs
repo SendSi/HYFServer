@@ -11,28 +11,27 @@ namespace HYFServer.Services
         {
             while (!context.CancellationToken.IsCancellationRequested)
             {
-                while (pushQueue.TryDequeue(out var shopListen))
+                while (pushQueue.TryDequeue(out var loginListen))
                 {
-                    await responseStream.WriteAsync(shopListen);
+                    await responseStream.WriteAsync(loginListen);
                 }
             }
             await Task.CompletedTask;
         }
-        public static void BagToClient(ServerCallContext context, LoginResponse shopListen)
+        public static void BagToClient(ServerCallContext context, LoginResponse loginListen)
         {
-            pushQueue.Enqueue(shopListen);
+            pushQueue.Enqueue(loginListen);
         }
         static ConcurrentQueue<LoginResponse> pushQueue = new ConcurrentQueue<LoginResponse>();
 
 
 
         const string connectionString = "Server=localhost;Database=hyf;Uid=root;Pwd=123456;";
-        public override Task<ResultRsp> Login(LoginReq request, ServerCallContext context)
+        public override Task<ResultRsp> LoginIn(LoginReq request, ServerCallContext context)
         {
             var isExist = RoleSQLQuery(request.NickName);
             if (isExist)
             {
-                BagServiceLogic.RoleBagInfo(context);
                 BagServiceLogic.AddItemDto();
             }
             // Task.Yield();

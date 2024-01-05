@@ -18,7 +18,7 @@ message BagRequest  {
 //加入监听 响应
 message BagResponse  {
     oneof BagMsg{  
-     ItemDto allItems = 2;
+     ItemDtos itemInfos = 4;
     }
 }
 
@@ -67,5 +67,5 @@ message ItemDto{
 }
 //items的 dto
 message ItemDtos{
-     repeated  ItemDto allItemInfo = 1;
+     repeated  ItemDto itemInfos = 2;
 }

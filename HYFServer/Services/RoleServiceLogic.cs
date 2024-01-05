@@ -18,16 +18,16 @@ namespace HYFServer.Services
         {
             while (!context.CancellationToken.IsCancellationRequested)
             {
-                while (pushQueue.TryDequeue(out var shopListen))
+                while (pushQueue.TryDequeue(out var roleListen))
                 {
-                    await responseStream.WriteAsync(shopListen);
+                    await responseStream.WriteAsync(roleListen);
                 }
             }
             await Task.CompletedTask;
         }
-        public static void RoleToClient(ServerCallContext context, RoleResponse shopListen)
+        public static void RoleToClient(ServerCallContext context, RoleResponse roleListen)
         {
-            pushQueue.Enqueue(shopListen);
+            pushQueue.Enqueue(roleListen);
         }
         static ConcurrentQueue<RoleResponse> pushQueue = new ConcurrentQueue<RoleResponse>();
 
@@ -36,7 +36,7 @@ namespace HYFServer.Services
             var state = DataSQL(request.Uid) ? 1 : 0;
             if (state == 1)
             {
-                BagServiceLogic.RoleBagInfo(context);
+                //BagServiceLogic.RoleBagInfo(context);
             }
 
             return Task.FromResult(new RoleInfoResponse
