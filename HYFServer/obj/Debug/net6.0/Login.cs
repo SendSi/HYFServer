@@ -24,16 +24,22 @@ namespace HYFServer {
     static LoginReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtsb2dpbi5wcm90bxIFbG9naW4iHAoITG9naW5SZXESEAoIbmlja05hbWUY",
-            "CiABKAkiGgoJUmVzdWx0UnNwEg0KBXN0YXRlGAEgASgFIksKCExvZ2luUnNw",
-            "EhAKCG5pY2tOYW1lGAogASgJEhAKCHBhc3N3b3JkGAIgASgJEgsKA3VpZBgD",
-            "IAEoAxIOCgZnZW5kZXIYBCABKAgiCwoJTG9nb3V0UmVxIgsKCUxvZ291dFJz",
-            "cDJoCgxMb2dpblNlcnZpY2USKgoFTG9naW4SDy5sb2dpbi5Mb2dpblJlcRoQ",
-            "LmxvZ2luLlJlc3VsdFJzcBIsCgZMb2dvdXQSEC5sb2dpbi5Mb2dvdXRSZXEa",
-            "EC5sb2dpbi5Mb2dvdXRSc3BCDKoCCUhZRlNlcnZlcmIGcHJvdG8z"));
+            "Cgtsb2dpbi5wcm90bxIFbG9naW4iDgoMTG9naW5SZXF1ZXN0IkAKDUxvZ2lu",
+            "UmVzcG9uc2USIwoIYWxsSXRlbXMYASABKAsyDy5sb2dpbi5Mb2dpblJzcEgA",
+            "QgoKCExvZ2luTXNnIhwKCExvZ2luUmVxEhAKCG5pY2tOYW1lGAogASgJIhoK",
+            "CVJlc3VsdFJzcBINCgVzdGF0ZRgBIAEoBSJLCghMb2dpblJzcBIQCghuaWNr",
+            "TmFtZRgKIAEoCRIQCghwYXNzd29yZBgCIAEoCRILCgN1aWQYAyABKAMSDgoG",
+            "Z2VuZGVyGAQgASgIIgsKCUxvZ291dFJlcSILCglMb2dvdXRSc3AypAEKDExv",
+            "Z2luU2VydmljZRI6CgtMaXN0ZW5Mb2dpbhITLmxvZ2luLkxvZ2luUmVxdWVz",
+            "dBoULmxvZ2luLkxvZ2luUmVzcG9uc2UwARIqCgVMb2dpbhIPLmxvZ2luLkxv",
+            "Z2luUmVxGhAubG9naW4uUmVzdWx0UnNwEiwKBkxvZ291dBIQLmxvZ2luLkxv",
+            "Z291dFJlcRoQLmxvZ2luLkxvZ291dFJzcEIMqgIJSFlGU2VydmVyYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::HYFServer.LoginRequest), global::HYFServer.LoginRequest.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::HYFServer.LoginResponse), global::HYFServer.LoginResponse.Parser, new[]{ "AllItems" }, new[]{ "LoginMsg" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::HYFServer.LoginReq), global::HYFServer.LoginReq.Parser, new[]{ "NickName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::HYFServer.ResultRsp), global::HYFServer.ResultRsp.Parser, new[]{ "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::HYFServer.LoginRsp), global::HYFServer.LoginRsp.Parser, new[]{ "NickName", "Password", "Uid", "Gender" }, null, null, null, null),
@@ -45,6 +51,361 @@ namespace HYFServer {
 
   }
   #region Messages
+  /// <summary>
+  ///加入监听 请求
+  /// </summary>
+  public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LoginRequest> _parser = new pb::MessageParser<LoginRequest>(() => new LoginRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<LoginRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginRequest(LoginRequest other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginRequest Clone() {
+      return new LoginRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as LoginRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(LoginRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(LoginRequest other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///加入监听 响应
+  /// </summary>
+  public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LoginResponse> _parser = new pb::MessageParser<LoginResponse>(() => new LoginResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<LoginResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginResponse(LoginResponse other) : this() {
+      switch (other.LoginMsgCase) {
+        case LoginMsgOneofCase.AllItems:
+          AllItems = other.AllItems.Clone();
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginResponse Clone() {
+      return new LoginResponse(this);
+    }
+
+    /// <summary>Field number for the "allItems" field.</summary>
+    public const int AllItemsFieldNumber = 1;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::HYFServer.LoginRsp AllItems {
+      get { return loginMsgCase_ == LoginMsgOneofCase.AllItems ? (global::HYFServer.LoginRsp) loginMsg_ : null; }
+      set {
+        loginMsg_ = value;
+        loginMsgCase_ = value == null ? LoginMsgOneofCase.None : LoginMsgOneofCase.AllItems;
+      }
+    }
+
+    private object loginMsg_;
+    /// <summary>Enum of possible cases for the "LoginMsg" oneof.</summary>
+    public enum LoginMsgOneofCase {
+      None = 0,
+      AllItems = 1,
+    }
+    private LoginMsgOneofCase loginMsgCase_ = LoginMsgOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginMsgOneofCase LoginMsgCase {
+      get { return loginMsgCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearLoginMsg() {
+      loginMsgCase_ = LoginMsgOneofCase.None;
+      loginMsg_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as LoginResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(LoginResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(AllItems, other.AllItems)) return false;
+      if (LoginMsgCase != other.LoginMsgCase) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (loginMsgCase_ == LoginMsgOneofCase.AllItems) hash ^= AllItems.GetHashCode();
+      hash ^= (int) loginMsgCase_;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (loginMsgCase_ == LoginMsgOneofCase.AllItems) {
+        output.WriteRawTag(10);
+        output.WriteMessage(AllItems);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (loginMsgCase_ == LoginMsgOneofCase.AllItems) {
+        output.WriteRawTag(10);
+        output.WriteMessage(AllItems);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (loginMsgCase_ == LoginMsgOneofCase.AllItems) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AllItems);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(LoginResponse other) {
+      if (other == null) {
+        return;
+      }
+      switch (other.LoginMsgCase) {
+        case LoginMsgOneofCase.AllItems:
+          if (AllItems == null) {
+            AllItems = new global::HYFServer.LoginRsp();
+          }
+          AllItems.MergeFrom(other.AllItems);
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            global::HYFServer.LoginRsp subBuilder = new global::HYFServer.LoginRsp();
+            if (loginMsgCase_ == LoginMsgOneofCase.AllItems) {
+              subBuilder.MergeFrom(AllItems);
+            }
+            input.ReadMessage(subBuilder);
+            AllItems = subBuilder;
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            global::HYFServer.LoginRsp subBuilder = new global::HYFServer.LoginRsp();
+            if (loginMsgCase_ == LoginMsgOneofCase.AllItems) {
+              subBuilder.MergeFrom(AllItems);
+            }
+            input.ReadMessage(subBuilder);
+            AllItems = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class LoginReq : pb::IMessage<LoginReq>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -57,7 +418,7 @@ namespace HYFServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[0]; }
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -232,7 +593,7 @@ namespace HYFServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[1]; }
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -407,7 +768,7 @@ namespace HYFServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[2]; }
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -687,7 +1048,7 @@ namespace HYFServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[3]; }
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -823,7 +1184,7 @@ namespace HYFServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[4]; }
+      get { return global::HYFServer.LoginReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

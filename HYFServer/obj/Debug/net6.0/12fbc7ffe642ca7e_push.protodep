@@ -1,4 +1,0 @@
-obj\Debug\net6.0/Push.cs \
-obj\Debug\net6.0/PushGrpc.cs: Protos/role.proto\
- Protos/bag.proto\
- Protos/push.proto

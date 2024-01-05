@@ -3,8 +3,21 @@ package login;
 option csharp_namespace = "HYFServer";
 
 service LoginService {
+  rpc ListenLogin(LoginRequest) returns (stream LoginResponse);
+
   rpc Login (LoginReq) returns (ResultRsp);
   rpc Logout (LogoutReq) returns (LogoutRsp);
+}
+
+//加入监听 请求
+message LoginRequest  {
+}
+
+//加入监听 响应
+message LoginResponse  {
+    oneof LoginMsg{  
+     LoginRsp allItems = 1;
+    }
 }
 
 message LoginReq  {

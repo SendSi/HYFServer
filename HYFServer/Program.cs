@@ -1,5 +1,5 @@
 using HYFServer.Services;
-using PyramidServer.Services;
+using HYFServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddGrpc();
 
 var app = builder.Build();
+app.UseHttpsRedirection();
 
 // Configure the HTTP request pipeline.
-app.MapGrpcService<GreeterService>();
-app.MapGrpcService<BagServiceLogic>();
 app.MapGrpcService<LoginServiceLogic>();
+app.MapGrpcService<BagServiceLogic>();
 app.MapGrpcService<RoleServiceLogic>();
-app.MapGrpcService<PushServiceLogic>();
+app.MapGrpcService<ShopServiceLogic>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.Run();

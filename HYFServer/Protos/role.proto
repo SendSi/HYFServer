@@ -4,10 +4,24 @@ package role;
 
 
 service RoleService {
+  rpc ListenRole(RoleRequest) returns (stream RoleResponse);
+
   rpc RoleInfo(RoleInfoRequest) returns (RoleInfoResponse);
   rpc RoleUpLv(RoleUpLvRequest) returns (RoleUpLvResponse);
   rpc RoleAddVip(RoleAddVipRequest) returns (RoleAddVipResponse);
 }
+
+//加入监听 请求
+message RoleRequest  {
+}
+
+//加入监听 响应
+message RoleResponse  {
+    oneof RoleMsg{  
+     RoleInfo info = 1;
+    }
+}
+
 
 //查看某一角色的 请求
 message RoleInfoRequest {

@@ -1,8 +1,9 @@
 using Grpc.Core;
 using MySql.Data.MySqlClient;
 using HYFServer;
+using System.Collections.Concurrent;
 
-namespace PyramidServer.Services
+namespace HYFServer.Services
 {
     public class RoleServiceLogic : RoleService.RoleServiceBase
     {
@@ -12,6 +13,24 @@ namespace PyramidServer.Services
         {
             _logger = logger;
         }
+
+        public override async Task ListenRole(RoleRequest request, IServerStreamWriter<RoleResponse> responseStream, ServerCallContext context)
+        {
+            while (!context.CancellationToken.IsCancellationRequested)
+            {
+                while (pushQueue.TryDequeue(out var shopListen))
+                {
+                    await responseStream.WriteAsync(shopListen);
+                }
+            }
+            await Task.CompletedTask;
+        }
+        public static void RoleToClient(ServerCallContext context, RoleResponse shopListen)
+        {
+            pushQueue.Enqueue(shopListen);
+        }
+        static ConcurrentQueue<RoleResponse> pushQueue = new ConcurrentQueue<RoleResponse>();
+
         public override Task<RoleInfoResponse> RoleInfo(RoleInfoRequest request, ServerCallContext context)
         {
             var state = DataSQL(request.Uid) ? 1 : 0;
@@ -26,9 +45,9 @@ namespace PyramidServer.Services
                 {
                     Age = 1,
                     Uid = "fd",
-                    Gender=1,
-                    Lv=10,
-                    Nickname="名字"
+                    Gender = 1,
+                    Lv = 10,
+                    Nickname = "名字"
                 }
             });
         }

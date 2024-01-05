@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<Protobuf Include="Protos\greet.proto" GrpcServices="Server" ProtoRoot="Protos"  />
-	<Protobuf Include="Protos\bag.proto" GrpcServices="Server" ProtoRoot="Protos"  />
-	<Protobuf Include="Protos\login.proto" GrpcServices="Server" ProtoRoot="Protos"  />
-	<Protobuf Include="Protos\role.proto" GrpcServices="Server" ProtoRoot="Protos"  />
-	<Protobuf Include="Protos\push.proto" GrpcServices="Server"  ProtoRoot="Protos" />
+    <None Remove="Protos\shop.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Protobuf Include="Protos\bag.proto" GrpcServices="Server" ProtoRoot="Protos" />
+	<Protobuf Include="Protos\login.proto" GrpcServices="Server" ProtoRoot="Protos" />
+	<Protobuf Include="Protos\role.proto" GrpcServices="Server" ProtoRoot="Protos" />
+	<Protobuf Include="Protos\shop.proto" GrpcServices="Server" ProtoRoot="Protos" />
   </ItemGroup>
 
   <ItemGroup>

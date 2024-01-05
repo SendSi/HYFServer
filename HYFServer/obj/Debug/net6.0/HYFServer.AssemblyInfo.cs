@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HYFServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6238b2e28b78f7c261a28faa816062cacb1798e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01c3dfd8b3055963f6a46c7c2c9be1024c8dc146")]
 [assembly: System.Reflection.AssemblyProductAttribute("HYFServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HYFServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

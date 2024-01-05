@@ -3,10 +3,25 @@ package bag;
 option csharp_namespace = "HYFServer";
 
 service BagService {
+  rpc ListenBag(BagRequest) returns (stream BagResponse);
+
   rpc BagAllInfo (BagAllInfoRequest) returns (BagAllInfoResponse);
   rpc BagOneInfo (BagOneInfoRequest) returns (BagOneInfoResponse);
   rpc BagUsingItem (BagUsingItemRequest) returns (BagUsingItemResponse);
+  rpc OpenBag(stream OpenBagRequest) returns (stream OpenBagResponse);
 }
+
+//加入监听 请求
+message BagRequest  {
+}
+
+//加入监听 响应
+message BagResponse  {
+    oneof BagMsg{  
+     ItemDto allItems = 2;
+    }
+}
+
 //获取背包所有 请求
 message BagAllInfoRequest  {
 }
@@ -33,6 +48,14 @@ message BagUsingItemRequest  {
 message BagUsingItemResponse  {
     int32 cfgId=1;
     int32 sum=2;
+}
+
+message OpenBagRequest{
+}
+
+// 服务端响应消息定义
+message OpenBagResponse {
+  repeated ItemDto items = 1;
 }
 
 

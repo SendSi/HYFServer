@@ -1,11 +1,31 @@
 using Grpc.Core;
 using MySql.Data.MySqlClient;
 using HYFServer;
+using System.Collections.Concurrent;
 
-namespace PyramidServer.Services
+namespace HYFServer.Services
 {
     public class LoginServiceLogic : LoginService.LoginServiceBase
     {
+        public override async Task ListenLogin(LoginRequest request, IServerStreamWriter<LoginResponse> responseStream, ServerCallContext context)
+        {
+            while (!context.CancellationToken.IsCancellationRequested)
+            {
+                while (pushQueue.TryDequeue(out var shopListen))
+                {
+                    await responseStream.WriteAsync(shopListen);
+                }
+            }
+            await Task.CompletedTask;
+        }
+        public static void BagToClient(ServerCallContext context, LoginResponse shopListen)
+        {
+            pushQueue.Enqueue(shopListen);
+        }
+        static ConcurrentQueue<LoginResponse> pushQueue = new ConcurrentQueue<LoginResponse>();
+
+
+
         const string connectionString = "Server=localhost;Database=hyf;Uid=root;Pwd=123456;";
         public override Task<ResultRsp> Login(LoginReq request, ServerCallContext context)
         {
@@ -13,6 +33,7 @@ namespace PyramidServer.Services
             if (isExist)
             {
                 BagServiceLogic.RoleBagInfo(context);
+                BagServiceLogic.AddItemDto();
             }
             // Task.Yield();
             return Task.FromResult(new ResultRsp()

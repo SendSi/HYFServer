@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+package shop;
+option csharp_namespace = "HYFServer";
+
+service ShopService {
+    rpc ListenShop(ShopRequest) returns (stream ShopResponse);
+    rpc ShopState(ShopStateRequest) returns (ShopStateResponse);
+}
+
+message ShopRequest {
+}
+
+message ShopResponse {
+    oneof ListenMsg{  
+      ShopStates allStates=3;//登录时 全下发
+      ShopStateResponse oneState=2;//有时 玩着玩着 就打开 或 关闭 某个商店
+    }
+}
+
+message ShopStates{
+   repeated ShopStateResponse item=3;
+}
+
+message ShopStateRequest{
+   int32 cfgId=1;
+}
+
+message ShopStateResponse{
+   int32 cfgId=1;
+   bool state=2;
+}

@@ -46,6 +46,10 @@ namespace HYFServer {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.BagRequest> __Marshaller_bag_BagRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.BagResponse> __Marshaller_bag_BagResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::HYFServer.BagAllInfoRequest> __Marshaller_bag_BagAllInfoRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagAllInfoRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::HYFServer.BagAllInfoResponse> __Marshaller_bag_BagAllInfoResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagAllInfoResponse.Parser));
@@ -57,6 +61,18 @@ namespace HYFServer {
     static readonly grpc::Marshaller<global::HYFServer.BagUsingItemRequest> __Marshaller_bag_BagUsingItemRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagUsingItemRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::HYFServer.BagUsingItemResponse> __Marshaller_bag_BagUsingItemResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.BagUsingItemResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.OpenBagRequest> __Marshaller_bag_OpenBagRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.OpenBagRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::HYFServer.OpenBagResponse> __Marshaller_bag_OpenBagResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::HYFServer.OpenBagResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::HYFServer.BagRequest, global::HYFServer.BagResponse> __Method_ListenBag = new grpc::Method<global::HYFServer.BagRequest, global::HYFServer.BagResponse>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ListenBag",
+        __Marshaller_bag_BagRequest,
+        __Marshaller_bag_BagResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::HYFServer.BagAllInfoRequest, global::HYFServer.BagAllInfoResponse> __Method_BagAllInfo = new grpc::Method<global::HYFServer.BagAllInfoRequest, global::HYFServer.BagAllInfoResponse>(
@@ -82,6 +98,14 @@ namespace HYFServer {
         __Marshaller_bag_BagUsingItemRequest,
         __Marshaller_bag_BagUsingItemResponse);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::HYFServer.OpenBagRequest, global::HYFServer.OpenBagResponse> __Method_OpenBag = new grpc::Method<global::HYFServer.OpenBagRequest, global::HYFServer.OpenBagResponse>(
+        grpc::MethodType.DuplexStreaming,
+        __ServiceName,
+        "OpenBag",
+        __Marshaller_bag_OpenBagRequest,
+        __Marshaller_bag_OpenBagResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -92,6 +116,12 @@ namespace HYFServer {
     [grpc::BindServiceMethod(typeof(BagService), "BindService")]
     public abstract partial class BagServiceBase
     {
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task ListenBag(global::HYFServer.BagRequest request, grpc::IServerStreamWriter<global::HYFServer.BagResponse> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::HYFServer.BagAllInfoResponse> BagAllInfo(global::HYFServer.BagAllInfoRequest request, grpc::ServerCallContext context)
       {
@@ -110,6 +140,12 @@ namespace HYFServer {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task OpenBag(grpc::IAsyncStreamReader<global::HYFServer.OpenBagRequest> requestStream, grpc::IServerStreamWriter<global::HYFServer.OpenBagResponse> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -118,9 +154,11 @@ namespace HYFServer {
     public static grpc::ServerServiceDefinition BindService(BagServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
+          .AddMethod(__Method_ListenBag, serviceImpl.ListenBag)
           .AddMethod(__Method_BagAllInfo, serviceImpl.BagAllInfo)
           .AddMethod(__Method_BagOneInfo, serviceImpl.BagOneInfo)
-          .AddMethod(__Method_BagUsingItem, serviceImpl.BagUsingItem).Build();
+          .AddMethod(__Method_BagUsingItem, serviceImpl.BagUsingItem)
+          .AddMethod(__Method_OpenBag, serviceImpl.OpenBag).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -130,9 +168,11 @@ namespace HYFServer {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public static void BindService(grpc::ServiceBinderBase serviceBinder, BagServiceBase serviceImpl)
     {
+      serviceBinder.AddMethod(__Method_ListenBag, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::HYFServer.BagRequest, global::HYFServer.BagResponse>(serviceImpl.ListenBag));
       serviceBinder.AddMethod(__Method_BagAllInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.BagAllInfoRequest, global::HYFServer.BagAllInfoResponse>(serviceImpl.BagAllInfo));
       serviceBinder.AddMethod(__Method_BagOneInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.BagOneInfoRequest, global::HYFServer.BagOneInfoResponse>(serviceImpl.BagOneInfo));
       serviceBinder.AddMethod(__Method_BagUsingItem, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::HYFServer.BagUsingItemRequest, global::HYFServer.BagUsingItemResponse>(serviceImpl.BagUsingItem));
+      serviceBinder.AddMethod(__Method_OpenBag, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::HYFServer.OpenBagRequest, global::HYFServer.OpenBagResponse>(serviceImpl.OpenBag));
     }
 
   }
