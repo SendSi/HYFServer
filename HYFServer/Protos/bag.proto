@@ -19,6 +19,7 @@ message BagRequest  {
 message BagResponse  {
     oneof BagMsg{  
      ItemDtos itemInfos = 4;
+    int32 TestValue =5;
     }
 }
 

@@ -1,9 +1,9 @@
 using Grpc.Core;
-using HYFServer;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Google.Protobuf.Collections;
+using HYFServer;
 
 namespace HYFServer.Services
 {
@@ -37,7 +37,7 @@ namespace HYFServer.Services
         public static void AddItemDto()
         {
             BagResponse bagResponse = new BagResponse();
-            bagResponse.ItemInfos = new ItemDtos();  
+            bagResponse.ItemInfos = new ItemDtos();
 
             RepeatedField<ItemDto> res = new RepeatedField<ItemDto>();
             res.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
@@ -58,6 +58,13 @@ namespace HYFServer.Services
             Console.WriteLine($"-->×ÜÊý:{res.Count}");
         }
 
+
+        public static void OpenSetValue()
+        {
+            BagResponse bagResponse = new BagResponse();
+            bagResponse.TestValue = 5;
+            pushQueue.Enqueue(bagResponse);
+        }
         public override Task<BagAllInfoResponse> BagAllInfo(BagAllInfoRequest request, ServerCallContext context)
         {
             BagAllInfoResponse res = new BagAllInfoResponse();
@@ -87,6 +94,7 @@ namespace HYFServer.Services
 
         public override Task<BagUsingItemResponse> BagUsingItem(BagUsingItemRequest request, ServerCallContext context)
         {
+            OpenSetValue();
             return Task.FromResult(new BagUsingItemResponse()
             {
                 CfgId = 1,
