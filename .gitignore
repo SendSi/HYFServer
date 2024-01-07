@@ -45,6 +45,7 @@ ExportedObj/
 *.opendb
 *.VC.db
 HYFServer/bin/
+HYFServer/obj/
 
 # Unity3D generated meta files
 *.pidb.meta
