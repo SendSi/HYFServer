@@ -1,2 +1,0 @@
-obj\Debug\net6.0/Role.cs \
-obj\Debug\net6.0/RoleGrpc.cs: Protos/role.proto

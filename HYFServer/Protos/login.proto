@@ -5,7 +5,7 @@ option csharp_namespace = "HYFServer";
 service LoginService {
   rpc ListenLogin(LoginRequest) returns (stream LoginResponse);
 
-  rpc LoginIn (LoginReq) returns (ResultRsp);
+  rpc LoginIn (LoginReq) returns (LoginRsp);
   rpc Logout (LogoutReq) returns (LogoutRsp);
 }
 
@@ -25,14 +25,12 @@ message LoginReq  {
 }
 //结果响应
 message ResultRsp{
-    int32 state=1;//1成功
+    int32 state=1;//>0则成功
 }
 
 message LoginRsp {
   string nickName = 10;
-  string password = 2;
-  int64 uid = 3;
-  bool gender = 4;
+  int32 id = 12;
 }
 
 message LogoutReq {

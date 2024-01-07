@@ -1,6 +1,5 @@
 using Grpc.Core;
-using MySql.Data.MySqlClient;
-using HYFServer;
+using HYFServer.Utils;
 using System.Collections.Concurrent;
 
 namespace HYFServer.Services
@@ -26,44 +25,30 @@ namespace HYFServer.Services
 
 
 
-        const string connectionString = "Server=localhost;Database=hyf;Uid=root;Pwd=123456;";
-        public override Task<ResultRsp> LoginIn(LoginReq request, ServerCallContext context)
+        const string connectionString = "Server=localhost;Database=pyramid;Uid=root;Pwd=123456;";
+        public override Task<LoginRsp> LoginIn(LoginReq request, ServerCallContext context)
         {
-            var isExist = RoleSQLQuery(request.NickName);
-            if (isExist)
+            var rsp = RoleSQLHasNickName(request.NickName);
+            if (rsp != null && rsp.Id > 0)
             {
-                BagServiceLogic.AddItemDto();
+                BagServiceLogic.AddItemDto(rsp.Id);
             }
-            // Task.Yield();
-            return Task.FromResult(new ResultRsp()
-            {
-                State=(isExist?1:0)
-            });
-
+            return Task.FromResult(rsp);
         }
 
-        bool RoleSQLQuery(string nickName)
+        LoginRsp RoleSQLHasNickName(string nickName)
         {
-            using (var connection = new MySqlConnection(connectionString))
+            LoginRsp rsp = new LoginRsp();
+            var listDic = MySqlUtils.Instance.QuerySQL_1("SELECT * FROM role WHERE  nickname = @nickName", "@nickName", nickName);
+            for (int i = 0; i < listDic.Count; i++)
             {
-                connection.Open();
-                Console.WriteLine("-------------open mysql-----------------");
-                // 使用参数化查询以防止 SQL 注入
-                string query = "SELECT * FROM role WHERE  nickname = @nickName";
-                using (var cmd = new MySqlCommand(query, connection))
+                foreach (var dic in listDic[i])
                 {
-                    cmd.Parameters.AddWithValue("@nickName", nickName);
-                    //cmd.Parameters.AddWithValue("@pwd", pwd);
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return true;
-                        }
-                    }
+                    if (dic.Key == "id") { rsp.Id = (int)dic.Value; } // 根据列名将值赋给相应的属性
+                    else if (dic.Key == "nickname") { rsp.NickName = dic.Value.ToString(); }
                 }
             }
-            return false;
+            return rsp;
         }
 
         public override Task<LogoutRsp> Logout(LogoutReq request, ServerCallContext context)

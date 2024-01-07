@@ -1,9 +1,8 @@
-using Grpc.Core;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Google.Protobuf.Collections;
-using HYFServer;
+using Grpc.Core;
+using HYFServer.Utils;
+using System.Collections.Concurrent;
+
 
 namespace HYFServer.Services
 {
@@ -28,34 +27,40 @@ namespace HYFServer.Services
             await Task.CompletedTask;
         }
         static ConcurrentQueue<BagResponse> pushQueue = new ConcurrentQueue<BagResponse>();
+
+
         public static void BagToClient(ServerCallContext context, BagResponse bagListen)
         {
             pushQueue.Enqueue(bagListen);
         }
 
 
-        public static void AddItemDto()
+        public static void AddItemDto(int idValue)
         {
             BagResponse bagResponse = new BagResponse();
             bagResponse.ItemInfos = new ItemDtos();
+            var res = RoleHasBagData(idValue);
 
-            RepeatedField<ItemDto> res = new RepeatedField<ItemDto>();
-            res.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 2, Sum = 51, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 3, Sum = 61, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 5, Sum = 101, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 58, Sum = 81, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 59, Sum = 81, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 2401, Sum = 81, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 2402, Sum = 71, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 10001, Sum = 81, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 40001, Sum = 51, Uid = "21" });
-            res.Add(new ItemDto() { CfgId = 30001, Sum = 11, Uid = "21" });
             bagResponse.ItemInfos.ItemInfos.Add(res);
-
             pushQueue.Enqueue(bagResponse);
+        }
 
-            Console.WriteLine($"-->×ÜÊý:{res.Count}");
+        static RepeatedField<ItemDto> RoleHasBagData(int roleId)
+        {
+            RepeatedField<ItemDto> res = new RepeatedField<ItemDto>();
+            var listDic = MySqlUtils.Instance.QuerySQL_1("SELECT * FROM bag where roleId=@roleId", "@roleId", roleId);
+            for (int i = 0; i < listDic.Count; i++)
+            {
+                ItemDto itemDto = new ItemDto(); // åˆ›å»ºæ–°çš„ ItemDto å¯¹è±¡
+                foreach (var dic in listDic[i])
+                {
+                    if (dic.Key == "cfgId") { itemDto.CfgId = (int)dic.Value; } // æ ¹æ®åˆ—åå°†å€¼èµ‹ç»™ç›¸åº”çš„å±žæ€§
+                    else if (dic.Key == "sum") { itemDto.Sum = (int)dic.Value; }
+                    else if (dic.Key == "uid") { itemDto.Uid = (string)dic.Value; }
+                }
+                res.Add(itemDto);
+            }
+            return res;
         }
 
 
@@ -102,41 +107,26 @@ namespace HYFServer.Services
             });
         }
 
-
-        public static void RoleBagInfo(ServerCallContext context)
+        public override Task<OpenBagResponse> OpenBag(OpenBagRequest request, ServerCallContext context)
         {
-            //ItemDtos res = new ItemDtos();
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 2, Sum = 51, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 3, Sum = 61, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 5, Sum = 101, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 58, Sum = 81, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 59, Sum = 81, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 2401, Sum = 81, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 2402, Sum = 71, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 10001, Sum = 81, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 40001, Sum = 51, Uid = "21" });
-            //res.AllItemInfo.Add(new ItemDto() { CfgId = 30001, Sum = 11, Uid = "21" });
+            Metadata md = context.RequestHeaders;
+            int roleId = 0;
+            string nickName = string.Empty;
+            foreach (var item in md)
+            {
+                if (item.Key == "roleid") { roleId = int.Parse(item.Value); }
+                if (item.Key == "nickname") { nickName = item.Value.ToString(); }
+            }
+            Console.WriteLine($"æ ¹æ®è´¦å· åŽ»mysqlæŸ¥è¯¢æ•°æ®-->>>:roleId:{roleId}  nickName:{nickName}");
 
-            //PushServiceLogic.PushToClient(context, new PushRsp()
-            //{
-            //    ItemDots = res
-            //});
+            //ç»™çš„ä¼ªæŸ¥è¯¢ç»“æžœ
+            OpenBagResponse res = new OpenBagResponse();
+            res.Items.Add(new ItemDto() { CfgId = 1, Sum = 1, Uid = "21" });
+            res.Items.Add(new ItemDto() { CfgId = 2, Sum = 1, Uid = "21" });
+            res.Items.Add(new ItemDto() { CfgId = 3, Sum = 1, Uid = "21" });
+            return Task.FromResult(res);
         }
 
-        public override async Task OpenBag(IAsyncStreamReader<OpenBagRequest> requestStream, IServerStreamWriter<OpenBagResponse> responseStream, ServerCallContext context)
-        {
-            //Console.WriteLine($"×ÜÊý:{initialItems.Count}");
-            //while (true)
-            //{
-            //    if (initialItems.Count > 0)
-            //    {   // ·¢ËÍ¸üÐÂµÄ±³°üÐÅÏ¢¸ø¿Í»§¶Ë
-            //        await responseStream.WriteAsync(new OpenBagResponse { Items = { initialItems } });
-            //        Console.WriteLine($"·¢ËÍÁË ×ÜÊý:{initialItems.Count}");
-            //        initialItems.Clear();
-            //    }
-            //}
-        }
 
 
 

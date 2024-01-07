@@ -8,7 +8,7 @@ service BagService {
   rpc BagAllInfo (BagAllInfoRequest) returns (BagAllInfoResponse);
   rpc BagOneInfo (BagOneInfoRequest) returns (BagOneInfoResponse);
   rpc BagUsingItem (BagUsingItemRequest) returns (BagUsingItemResponse);
-  rpc OpenBag(stream OpenBagRequest) returns (stream OpenBagResponse);
+  rpc OpenBag(OpenBagRequest) returns (OpenBagResponse);
 }
 
 //加入监听 请求
@@ -19,7 +19,7 @@ message BagRequest  {
 message BagResponse  {
     oneof BagMsg{  
      ItemDtos itemInfos = 4;
-    int32 TestValue =5;
+     int32 testValue=5;
     }
 }
 

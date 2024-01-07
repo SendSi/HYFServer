@@ -1,2 +1,0 @@
-obj\Debug\net6.0/Shop.cs \
-obj\Debug\net6.0/ShopGrpc.cs: Protos/shop.proto

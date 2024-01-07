@@ -1,6 +1,5 @@
 using Grpc.Core;
 using MySql.Data.MySqlClient;
-using HYFServer;
 using System.Collections.Concurrent;
 
 namespace HYFServer.Services

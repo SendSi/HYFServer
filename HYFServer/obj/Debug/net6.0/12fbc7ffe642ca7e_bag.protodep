@@ -1,2 +1,0 @@
-obj\Debug\net6.0/Bag.cs \
-obj\Debug\net6.0/BagGrpc.cs: Protos/bag.proto
