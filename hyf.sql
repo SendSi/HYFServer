@@ -11,11 +11,27 @@
  Target Server Version : 80100
  File Encoding         : 65001
 
- Date: 07/01/2024 15:28:19
+ Date: 08/07/2024 22:58:54
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for account
+-- ----------------------------
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE `account`  (
+  `id` int NOT NULL DEFAULT 1001,
+  `account` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `pwd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of account
+-- ----------------------------
+INSERT INTO `account` VALUES (1001, '小明', '1234');
+INSERT INTO `account` VALUES (1003, ' 小红', '789');
 
 -- ----------------------------
 -- Table structure for bag
@@ -34,10 +50,14 @@ CREATE TABLE `bag`  (
 -- ----------------------------
 INSERT INTO `bag` VALUES (2, '1001', 1, 1001);
 INSERT INTO `bag` VALUES (1, '1002', 1, 1001);
+INSERT INTO `bag` VALUES (2412, '11', 11, 1001);
 INSERT INTO `bag` VALUES (3, '121', 21, 1001);
+INSERT INTO `bag` VALUES (2413, '14', 14, 1001);
 INSERT INTO `bag` VALUES (40001, '212', 212, 1001);
 INSERT INTO `bag` VALUES (10001, '2321', 1000, 1002);
+INSERT INTO `bag` VALUES (30010, '45356', 54, 1001);
 INSERT INTO `bag` VALUES (6, '54', 100, 1002);
+INSERT INTO `bag` VALUES (31007, '645', 141, 1001);
 INSERT INTO `bag` VALUES (30001, '80', 212, 1002);
 INSERT INTO `bag` VALUES (2401, '81', 22, 1001);
 
